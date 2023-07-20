@@ -6,7 +6,7 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
-   module: {
+  module: {
     rules: [
       {
         test: /\.css$/i,
@@ -22,4 +22,4 @@ module.exports = {
       },
     ],
   },
- };
+};
