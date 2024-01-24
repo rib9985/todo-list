@@ -9,7 +9,7 @@ export default class Todo{
         this.priority=priority
     }
 
-    // Getters & Setters of the Todo
+    // Getters & Setters of Todo
     assignTitle(title){
         this.title = title
     }
@@ -42,4 +42,18 @@ export default class Todo{
     getDueDate(){
         return this.date
     }
+
+    getDateFormatted(){
+        if (!this.date){
+            return 'YY/MM/DD'
+        }
+
+        const dateObject = new Date(this.dueDate)
+        const formattedDate = dateObject.toLocaleDateString();
+        return formattedDate
+    }
+
+
+
+
 }
