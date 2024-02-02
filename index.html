@@ -3,13 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo List</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
-    <script src="main.js" defer></script>
-    <div id="todo-test"></div>
-    <form id='todo-post' action="post">
-        <input type="text" id="todo-title-input">
-        <input class="submit-button" type="submit" value="Change Todo Title" />
-    </form>
+
+
+    <div id="container">
+         <div id="div-header">
+            <div id="header-logo">
+                
+            </div>
+            <div id="header-title">
+                BetterDoings 
+            </div>
+            <div id="header-greet">
+                Hello, 
+            <div id="header-greet-name"> Bob Petterson</div>
+            </div>
+        </div>           
+   
+            <div id="div-sidebar">
+        <div id="sidebar-inbox">Inbox</div>
+                <div id="sidebar-today">Today</div>
+                <div id="sidebar-upcoming">Upcoming</div>
+                <div id="sidebar-upcoming">Anytime</div>
+                <div id="sidebar-projects">Projects</div>
+            </div>
+        
+    <div id="div-main-content">
+        <div id="div-current-todo-folder">Example Project</div>
+            <form id=form-create-todo action="post">
+                    <input type="text"  id="form-todo-title" placeholder="What's On Your Mind?">
+                    <input type="text" id="form-todo-description" placeholder="Description">
+                    <input type="text" id="form-todo-notes" placeholder="Notes">
+                   <input type="date" id="form-todo-date" value="2024-01-02" min="2024-01-01">
+                    
+
+                    <label for="form-todo-priority">Priority</label>
+        			<select name="form-todo-priority" id="form-todo-priority">
+                        <option value="low">Low</option>
+        				<option value="medium">Medium</option>
+        				<option value="high">High</option>
+                    </select>
+                <button type="submit" class="material-symbols-outlined" id="submit-todo-button">
+                    add_box</button>
+        </form>
+    <div id="div-divider"></div>
+                
+    <div class="todo">
+        
+       
+            <div id="div-todo-component">
+                <input type="checkbox" id="todo-checkbox">
+                <label for="todo-checkbox" id="todo-checkbox-label">
+                <div id="div-todo-title">this is a todo example</div>
+                <div id="div-todo-notes">this a todo notes example for people to see some notes here.</div>
+                <div id="div-todo-priority-icon" class="material-symbols-outlined">priority_high</div>
+                <button id="div-todo-edit-icon" class="material-symbols-outlined">edit</button>
+            </div>
+        </label>
+    </div>
+        </div>
+    
+
+    </div>
 </body>
 </html>
