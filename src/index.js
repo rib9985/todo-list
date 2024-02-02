@@ -1,24 +1,15 @@
 import Todo from "./modules/Todo";
 
-const todoOne = new Todo('test', 'this is a test', false, null, 'high');
-const todoSelector = document.getElementById('todo-test');
-const todoTitleInput = document.getElementById('todo-title-input');
+import './style.css';
 
-function updateTodoTitle(selector, input) {
-    todoOne.assignTitle(input.value);
-    selector.innerHTML = todoOne.title;
-    console.log(todoOne)
+function returnFlex(){const mainDivSelect = document.getElementById('div-main')
+mainDivSelect.classList.add('divMain')
 }
 
-function clearForm(text){
-    return text.value = ''
+function addLogo(){
+    const logoDiv = document.getElementById('div-logo')
+    logoDiv.classList.add('logo')
+    return logoDiv
 }
 
-const titleForm = document.getElementById('todo-post');
-titleForm.onsubmit = (event) => {
-    event.preventDefault();
-    updateTodoTitle(todoSelector, todoTitleInput);
-    clearForm(todoTitleInput)
-};
-
-todoSelector.innerText = todoOne.title
+addLogo()
