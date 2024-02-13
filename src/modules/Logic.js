@@ -1,4 +1,6 @@
 import Todo from "./Todo";
+import Project from "./Project"
+
 //
 
 const projects = []
@@ -14,38 +16,22 @@ function parseTodoForm(){
     const priority = document.getElementById('todo-form-priority').value
 
     const todoTaskObject = new Todo(title, description, complete, dueDate,priority)
-    return todoTaskObject && myTodos.push(todoTaskObject)
+    console.log(todoTaskObject) 
+    return todoTaskObject 
 }
 
 // Push Todo to Project -> Returns Updated Project
 function addTodoToProject(todo, project){
-    const currentProject = this.project
-    const todoName = this.todo
-
-    currentProject.key = todoName
-    currentProject.value = todo
-    
-    return currentProject
+    project.pushTodoToProject(todo)
+    return project
 }
 
 // Activate Project -> Returns Active Project
 function getActiveProject (name){
-
-    
-    
-
-
+    return projects.find(name)
 }
 
-// Edit Project -> Return Old Project, with new Name
 
-// Retrieves a Todo by Name -> Returns Todo by Name
-
-// Delete a Todo -> Returns Updated Project, without Todo
-
-// Edit a Todo -> Returns Todo
-
-// Assign Status -> Pushes Todo to Deleted Folder in Trash
-
+export {parseTodoForm, addTodoToProject,getActiveProject, projects}
 // TODO: Temporary storage, research how this works with JSON
 // Store Info
