@@ -1,49 +1,67 @@
 export default class Todo{
 
     // This creates the initial object of the todo
-    constructor(title, description, complete, dueDate, priority){
-        this.title=title
+    constructor(status, title, description, notes, dueDate, priority){
+        this.status= status
         this.description=description
-        this.complete= complete
+        this.title=title
+        this.notes =notes
         this.dueDate = dueDate
         this.priority=priority
     }
 
     // Getters & Setters of Todo
-    assignTitle(title){
+    set title(title){
         this.title = title
     }
 
-    assignDescription(description){
-        this.description = description
-    }
-
-    assignCompleteStatus(complete){
-        if (complete === true){
-            this.complete = true
-        }
-        else {
-            this.complete = false
-        }
-    }
-
-    assignDueDate(dueDate){
-        this.dueDate = dueDate
-    }
-
-    assignPriority(priority){
-        this.priority = priority
-    }
-
-    getTitle(){
+    get title(){
         return this.title
     }
 
-    getDueDate(){
-        return this.date
+
+    set description(description){
+        this.description = description
     }
 
-    getDateFormatted(){
+    get description(){
+        return this.description
+    }
+
+    set notes(notes){
+        this.notes = notes
+    }
+
+    get notes (){
+        return this.notes
+    }
+    
+    set status(status){
+        if (status === true){
+            this.status = true
+        }
+        else {
+            this.status = false
+        }
+    }
+
+    set dueDate(dueDate){
+        this.dueDate = dueDate
+    }
+
+   get dueDate(){
+    return this.dueDate
+   }
+ 
+    set priority(priority){
+        this.priority = priority
+    }
+
+    get priority(){
+        return this.priority
+    }
+
+    get dateFormatted(){
         if (!this.date){
             return 'YY/MM/DD'
         }
