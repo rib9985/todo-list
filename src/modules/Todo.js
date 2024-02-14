@@ -10,58 +10,8 @@ export default class Todo{
         this.priority=priority
     }
 
-    // Getters & Setters of Todo
-    set title(title){
-        this.title = title
-    }
 
-    get title(){
-        return this.title
-    }
-
-
-    set description(description){
-        this.description = description
-    }
-
-    get description(){
-        return this.description
-    }
-
-    set notes(notes){
-        this.notes = notes
-    }
-
-    get notes (){
-        return this.notes
-    }
-    
-    set status(status){
-        if (status === true){
-            this.status = true
-        }
-        else {
-            this.status = false
-        }
-    }
-
-    set dueDate(dueDate){
-        this.dueDate = dueDate
-    }
-
-   get dueDate(){
-    return this.dueDate
-   }
- 
-    set priority(priority){
-        this.priority = priority
-    }
-
-    get priority(){
-        return this.priority
-    }
-
-    get dateFormatted(){
+    dateFormatted(){
         if (!this.date){
             return 'YY/MM/DD'
         }
