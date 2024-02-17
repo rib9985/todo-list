@@ -117,7 +117,7 @@ gap: 0.5rem;
 }
 
 
-#form-create-todo{
+#form-submit-todo{
     display: flex;
     size: 2rem;
     gap: 1rem;
@@ -180,16 +180,27 @@ height: 2px;
     font-size: smaller;
 }
 
-#div-todo-priority-icon{
+.button-todo-priority{
     justify-content: center;
+    border-style: none;
     text-justify: center;
-    width: 1rem;
-    height: 1rem;
+    width: 110%;
+    height: 110%;
     font-size: 1rem;
     color: white;
     padding: 0.5%;
-    background-color: red;
     border-radius: 10px;
+}
+
+#todo-priority-high{
+    background-color: red;
+}
+#todo-priority-medium{
+    background-color: orange;
+}
+
+#todo-priority-low{
+    background-color: greenyellow;
 }
 
 #div-todo-edit-icon{
@@ -211,3 +222,5 @@ background-color: transparent;
     text-decoration: line-through;
     color: lightslategrey;
 }
+
+#
