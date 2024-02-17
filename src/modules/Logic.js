@@ -43,12 +43,26 @@ function addTodoToProject(todo, currentProject){
    const targetProject = getActiveProject(currentProject)
    if (targetProject){
     targetProject.projectTodos.push(todo)
-   } 
+    console.log(targetProject)
+} 
    else{
     console.log(`Project ${targetProject} not found`)
    }
 }
 
-export {parseTodoForm, addTodoToProject,getActiveProject, instantiateDefaultProjects, projects}
+
+    
+function togglePriorityStatus(project, todo){
+    const targetProject = getActiveProject(project)
+    const targetTodo = targetProject.findTodoByTitle(todo)
+    
+    targetTodo.changePriority()
+
+    const newPriorityStatus = targetTodo.priority
+    console.log(`${projects} with the ${todo} has a new priority: ${newPriorityStatus}`)
+    return newPriorityStatus
+}
+
+export {parseTodoForm, addTodoToProject,getActiveProject, togglePriorityStatus, instantiateDefaultProjects, projects}
 // TODO: Temporary storage, research how this works with JSON
 // Store Info
