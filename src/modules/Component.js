@@ -1,4 +1,4 @@
-const todoInnerHtml = `<div class="todo"> 
+export const todoInnerHtml = `<div class="todo"> 
             <div id="div-todo-component">
                 <input type="checkbox" id="todo-checkbox">
                 <label for="todo-checkbox" id="todo-checkbox-label">
@@ -10,4 +10,6 @@ const todoInnerHtml = `<div class="todo">
             </div>
     </div>`
 
-    export default { todoInnerHtml }
+  
+  
+    export default todoInnerHtml
