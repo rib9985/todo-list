@@ -33,16 +33,16 @@
             </div>
         
     <div id="div-main-content">
-        <div id="div-current-todo-folder">Example Project</div>
-            <form id=form-create-todo action="post">
-                    <input type="text"  id="form-todo-title" placeholder="What's On Your Mind?">
-                    <input type="text" id="form-todo-description" placeholder="Description">
-                    <input type="text" id="form-todo-notes" placeholder="Notes">
-                   <input type="date" id="form-todo-date" value="2024-01-02" min="2024-01-01">
+        <div id="div-current-project">Inbox</div>
+            <form id=form-submit-todo action="post">
+                    <input type="text"  id="form-todo-title" placeholder="What's On Your Mind?" required>
+                    <input type="text" id="form-todo-description" placeholder="Description" required>
+                    <input type="text" id="form-todo-notes" placeholder="Notes" required>
+                   <input type="date" id="form-todo-date" value="2024-01-02" min="2024-01-01" required>
                     
 
                     <label for="form-todo-priority">Priority</label>
-        			<select name="form-todo-priority" id="form-todo-priority">
+        			<select name="form-todo-priority" id="form-todo-priority" required>
                         <option value="low">Low</option>
         				<option value="medium">Medium</option>
         				<option value="high">High</option>
@@ -51,20 +51,19 @@
                     add_box</button>
         </form>
     <div id="div-divider"></div>
-                
-    <div class="todo">
-        
-       
+     <div id="todo-list">           
+    <div class="todo"> 
             <div id="div-todo-component">
                 <input type="checkbox" id="todo-checkbox">
                 <label for="todo-checkbox" id="todo-checkbox-label">
-                <div id="div-todo-title">this is a todo example</div>
-                <div id="div-todo-notes">this a todo notes example for people to see some notes here.</div>
+                <div id="div-todo-title"></div>
+                <div id="div-todo-notes"></div>
         </label>
-                <div id="div-todo-priority-icon" class="material-symbols-outlined">priority_high</div>
+                <div id="div-todo-priority-icon" class="material-symbols-outlined div-todo-priority">priority_high</div>
                 <button id="div-todo-edit-icon" class="material-symbols-outlined">edit</button>
             </div>
     </div>
+     </div>
         </div>
     
 
