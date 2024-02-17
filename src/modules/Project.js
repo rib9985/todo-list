@@ -11,4 +11,13 @@ export default class Project {
         this.projectTodos.push(todo)
     }
    }
+
+   findTodoByTitle (todoTitle){
+    if (todoTitle){
+      return this.projectTodos.find(todo => todo.title === todoTitle)
+    }
+    return console.log(`No ${todoTitle} found within ${this.name}`)
+   }
+
+   
 }   
