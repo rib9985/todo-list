@@ -25,6 +25,15 @@ export default class Todo{
         }
     }
 
+    changeStatus(){
+        if (this.status === true){
+            this.status = false
+        }
+        else if (this.status===false){
+            this.status = true
+        }
+    }
+
     dateFormatted(){
         if (!this.date){
             return 'YY/MM/DD'
