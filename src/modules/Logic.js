@@ -27,6 +27,7 @@ function parseTodoForm(){
     const priority = document.getElementById('form-todo-priority').value
 
     const todoTaskObject = new Todo(status, title, description, notes, dueDate, priority)
+    console.log(todoTaskObject)
     return todoTaskObject 
 }
 
@@ -52,17 +53,36 @@ function addTodoToProject(todo, currentProject){
 
 
     
-function togglePriorityStatus(project, todo){
+function togglePriorityStatus(project, id){
     const targetProject = getActiveProject(project)
-    const targetTodo = targetProject.findTodoByTitle(todo)
+    const targetTodo = targetProject.findTodoById(id)
     
     targetTodo.changePriority()
 
     const newPriorityStatus = targetTodo.priority
-    console.log(`${projects} with the ${todo} has a new priority: ${newPriorityStatus}`)
+    console.log(`${projects} with the TODO id ${id} has a new priority: ${newPriorityStatus}`)
     return newPriorityStatus
 }
 
-export {parseTodoForm, addTodoToProject,getActiveProject, togglePriorityStatus, instantiateDefaultProjects, projects}
+
+function changeTodoStatus(project, id){
+    const targetProject = getActiveProject(project)
+    const targetTodo = targetProject.findTodoById(id)
+    
+    
+    targetTodo.changeStatus()
+    const isStatusComplete =  targetTodo.status   
+    
+    console.log(`${targetTodo} with the TODO id ${id} has been assigned status ${targetTodo.status}`)
+    
+    if (isStatusComplete === true){
+        targetProject.filterCompletedTodos()
+        return true
+    }
+    
+        return false
+}
+
+export {parseTodoForm, addTodoToProject,getActiveProject, togglePriorityStatus, instantiateDefaultProjects, changeTodoStatus, projects}
 // TODO: Temporary storage, research how this works with JSON
 // Store Info
