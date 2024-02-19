@@ -36,43 +36,141 @@ static handleTodoForm(Event){
     const todo = logic.parseTodoForm()
 
     logic.addTodoToProject(todo,currentProject)
-    UI.createTodoComponent(todo.title, todo.notes, todo.description, todo.dueDate, todo.priority)
+    UI.createTodoComponent(todo.title, todo.notes, todo.description, todo.dueDate, todo.priority, todo.id)
+    
+    
+
 }
 
 static intializeUI(){
 }
 
+static attachAllListeners(){
+    UI.attachListenersToCheckboxes()
+    UI.attachListenersToEditButtons()
+    UI.attachListenersToPriorityButtons()
+}
 
 
-static createTodoComponent(title, description, notes, dueDate, priority){
+
+
+static createTodoComponent(title, description, notes, dueDate, priority, id){
    const divTodoList = document.getElementById('todo-list')
    const todoComponentHTML = 
-    `<div class="todo"> 
+    `<div class="todo" id="${id}"> 
             <div id="div-todo-component">
-                <input type="checkbox" id="todo-checkbox">
-                <label for="todo-checkbox" id="todo-checkbox-label">
+                <input type="checkbox" id="todo-checkbox-${id}" class='todo-checkbox'>
+                <label for="todo-checkbox-${id}" id="todo-checkbox-label">
                 <div id="div-todo-title">${title}</div>
                 <div id="div-todo-description">${description}</div>
                 <div id="div-todo-notes">${notes}</div>
                 <div id="div-todo-date">${dueDate}</div>
         </label>
-                <button id="todo-priority-${priority}" class="material-symbols-outlined button-todo-priority">priority_high</button>
-                <button id="div-todo-edit-icon" class="material-symbols-outlined">edit</button>
+                <button id="todo-priority-${id}" class="material-symbols-outlined priority-button-todo button-todo-priority-${priority}">priority_high</button>
+                <button id="todo-edit-${id}" class="material-symbols-outlined edit-button-todo">edit</button>
             </div>
     </div>`
 
     divTodoList.insertAdjacentHTML('beforeend', todoComponentHTML);
+    
+   const priorityButton  = document.getElementById(`todo-priority-${id}`) 
+    priorityButton.addEventListener('click', () => {UI.changePriority(priorityButton)}) 
 
-    const todoComponents = document.querySelectorAll('.todo');
-    const lastTodoComponent = todoComponents[todoComponents.length - 1];
-    const buttonTodoPriority = lastTodoComponent.querySelector('.button-todo-priority');
+    const editButton = document.getElementById(`todo-edit-${id}`)
+    editButton.addEventListener('click', () => {UI.handleEditButton(editButton)})
 
-    buttonTodoPriority.addEventListener('click', function() {
-        const newPriorityStatus = logic.togglePriorityStatus(UI.getActiveProject(), title);
-        this.id = `todo-priority-${newPriorityStatus}`; // Update the button's id
-})
+    const checkbox = document.getElementById(`todo-checkbox-${id}`)
+    checkbox.addEventListener('change', () => {setTimeout(()=>{
+        if (checkbox.checked){
+        UI.handleCheckboxCheck(checkbox)}
+    },2000)
+        })
+}
+
+
+static extractIdFromHtmlId(element){
+    return element.id.match(/\d/g).join('')
+}
+
+
+static changePriority (element){
+        const todoId = this.extractIdFromHtmlId(element)
+        const newPriorityStatus = logic.togglePriorityStatus(UI.getActiveProject(), todoId)
+        const newClassName =  `material-symbols-outlined priority-button-todo button-todo-priority-${newPriorityStatus}` 
+        
+        element.className= newClassName
+}
+
+
+static handleEditButton(element){
+        const todoId = this.extractIdFromHtmlId(element)
+        alert(`This Edit Button with Todo ${todoId} was alerted`)
+}
+
+
+
+static handleCheckboxCheck(element){
+    const todoId = this.extractIdFromHtmlId(element)
+    const todoStatus = logic.changeTodoStatus(UI.getActiveProject(), todoId)
+    if (todoStatus===true){
+            const todoComponent = document.getElementById(todoId)
+            console.log('Remove Todo from Todo List in DOM')
+            todoComponent.remove()}
+           
+        console.log('No todo found')}
+    
+
+
+static attachListenersToPriorityButtons(){
+
+    const buttons = document.querySelectorAll('.priority-button-todo')
+    
+    buttons.forEach(button => {
+    const todoId = button.id.slice(14)
+    button.addEventListener('click', () => {
+        const newPriorityStatus = logic.togglePriorityStatus(UI.getActiveProject(), todoId)
+        const newClassName =  `material-symbols-outlined priority-button-todo button-todo-priority-${newPriorityStatus}` 
+        button.className= newClassName
+    })}
+    )
+}
+
+static attachListenersToEditButtons(){
+    const buttons = document.querySelectorAll('.edit-button-todo')
+    
+    buttons.forEach(button => {
+    const todoId = button.id.slice(10)
+    button.addEventListener('click', () => {
+        alert (`Edit this TODO with id ${todoId}`)
+    })}
+    ) 
+
+}
+
+static attachListenersToCheckboxes(){
+    const checkboxes = document.querySelectorAll('.todo-checkbox')
+
+    checkboxes.forEach(checkbox => { 
+    
+        function clickHandler() {
+         const todoStatus = logic.changeTodoStatus(UI.getActiveProject(), todoId)
+        if (todoStatus===true){
+            const todoComponent = document.getElementById(todoId)
+            console.log('Remove Todo from Todo List in DOM')
+            todoComponent.remove()}
+        }
+    
+    const todoId = checkbox.id.slice(14)
+    checkbox.addEventListener('click', clickHandler())
+    
+} 
+    )   
+}
 
 
 
 
-}}
+
+}
+
+
