@@ -1,3 +1,5 @@
+import { projects } from "./Logic"
+
 export default class Project {
    
     constructor(name){
@@ -12,12 +14,14 @@ export default class Project {
     }
    }
 
-   findTodoByTitle (todoTitle){
-    if (todoTitle){
-      return this.projectTodos.find(todo => todo.title === todoTitle)
+   findTodoById(id){
+    if (id){
+      return this.projectTodos.find(todo => todo.id === id)
     }
-    return console.log(`No ${todoTitle} found within ${this.name}`)
+    return console.log(`No ${id} found within ${this.name}`)
    }
-
-   
+  
+   filterCompletedTodos(){
+        this.projectTodos = this.projectTodos.filter((todo) => !todo.status)
+   }
 }   
