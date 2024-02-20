@@ -1,3 +1,4 @@
+import idGenerator from "./IdGenerator"
 import { projects } from "./Logic"
 
 export default class Project {
@@ -5,6 +6,7 @@ export default class Project {
     constructor(name){
     this.name = name
     this.projectTodos = []
+    this.id = idGenerator()
 
    } 
  

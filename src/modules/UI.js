@@ -9,11 +9,21 @@ static idsDom(){
 
 static addEventListeners(){
     const formSubmitTodo = document.getElementById('form-submit-todo')
-    const todoCheckbox = document.getElementById('todo-checkbox')
-    const todoPriority = document.getElementsByClassName('div-todo-priority')
-    const sidebarProject = document.getElementById('sidebar-project')
+    const sidebarProjects = document.querySelectorAll('.projects')
 
     formSubmitTodo.addEventListener('submit', (event) => {UI.handleTodoForm(event)})
+    sidebarProjects.forEach((project) => {
+        project.addEventListener('click', ()=>
+        {UI.changeProject(project)})       
+    });
+
+}
+
+static changeProject(element){
+    const activeProject = document.getElementById('div-current-project')
+    activeProject.innerHTML = element.innerText
+    UI.clearTodoList()
+    UI.updateTodoList(activeProject.innerHTML)
 }
 
 static getActiveProject(){
@@ -22,11 +32,15 @@ static getActiveProject(){
     return activeProject
 }
 
+static updateTodoList(project){
+    const currentProject = logic.getActiveProject(project)
+    currentProject.projectTodos.forEach((todo) => {UI.createTodoComponent(todo.title, todo.description, todo.notes, todo.dueDate,todo.priority,todo.id)})
+}
 
-static clearProjectUI(){
+
+static clearTodoList(){
    const divTodoList = document.getElementById('todo-list')
    divTodoList.innerHTML = ''
-
 }
 
 
@@ -37,20 +51,16 @@ static handleTodoForm(Event){
 
     logic.addTodoToProject(todo,currentProject)
     UI.createTodoComponent(todo.title, todo.notes, todo.description, todo.dueDate, todo.priority, todo.id)
-    
-    
-
 }
 
-static intializeUI(){
-}
+
+
 
 static attachAllListeners(){
     UI.attachListenersToCheckboxes()
     UI.attachListenersToEditButtons()
     UI.attachListenersToPriorityButtons()
 }
-
 
 
 

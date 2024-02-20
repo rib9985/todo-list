@@ -83,6 +83,10 @@ function changeTodoStatus(project, id){
         return false
 }
 
+function removeProject(id){
+    projects.filter((project))
+}
+
 export {parseTodoForm, addTodoToProject,getActiveProject, togglePriorityStatus, instantiateDefaultProjects, changeTodoStatus, projects}
 // TODO: Temporary storage, research how this works with JSON
 // Store Info
