@@ -1,1 +1,116 @@
-(()=>{"use strict";var e,n,t,r,o,a,i,c,s,u,l,d,p,f,v={426:(e,n,t)=>{t.d(n,{Z:()=>p});var r=t(81),o=t.n(r),a=t(645),i=t.n(a),c=t(667),s=t.n(c),u=new URL(t(890),t.b),l=i()(o()),d=s()(u);l.push([e.id,`:root{}\n\n\n#header-logo{\n    width: 50px;\n    height: 50px;\n    background-image: url(${d});\n    background-repeat: no-repeat;\n};\n\n#header-title{\n    font-family: sans-serif;\n    font-size: 13rem;\n\n};\n\n.divMain{\n    display: flex;\n    flex-direction: column;\n    background-color: grey;\n    font-size: 1rem;\n}\n\nbody{\n    background-color: grey;\n}\n\n#div-main{\n    display: flex;\n    flex-direction: row;\n    gap: 2rem;\n    font-size: 2rem;\n    font-family: sans-serif;\n}`,""]);const p=l},645:e=>{e.exports=function(e){var n=[];return n.toString=function(){return this.map((function(n){var t="",r=void 0!==n[5];return n[4]&&(t+="@supports (".concat(n[4],") {")),n[2]&&(t+="@media ".concat(n[2]," {")),r&&(t+="@layer".concat(n[5].length>0?" ".concat(n[5]):""," {")),t+=e(n),r&&(t+="}"),n[2]&&(t+="}"),n[4]&&(t+="}"),t})).join("")},n.i=function(e,t,r,o,a){"string"==typeof e&&(e=[[null,e,void 0]]);var i={};if(r)for(var c=0;c<this.length;c++){var s=this[c][0];null!=s&&(i[s]=!0)}for(var u=0;u<e.length;u++){var l=[].concat(e[u]);r&&i[l[0]]||(void 0!==a&&(void 0===l[5]||(l[1]="@layer".concat(l[5].length>0?" ".concat(l[5]):""," {").concat(l[1],"}")),l[5]=a),t&&(l[2]?(l[1]="@media ".concat(l[2]," {").concat(l[1],"}"),l[2]=t):l[2]=t),o&&(l[4]?(l[1]="@supports (".concat(l[4],") {").concat(l[1],"}"),l[4]=o):l[4]="".concat(o)),n.push(l))}},n}},667:e=>{e.exports=function(e,n){return n||(n={}),e?(e=String(e.__esModule?e.default:e),/^['"].*['"]$/.test(e)&&(e=e.slice(1,-1)),n.hash&&(e+=n.hash),/["'() \t\n]|(%20)/.test(e)||n.needQuotes?'"'.concat(e.replace(/"/g,'\\"').replace(/\n/g,"\\n"),'"'):e):e}},81:e=>{e.exports=function(e){return e[1]}},379:e=>{var n=[];function t(e){for(var t=-1,r=0;r<n.length;r++)if(n[r].identifier===e){t=r;break}return t}function r(e,r){for(var a={},i=[],c=0;c<e.length;c++){var s=e[c],u=r.base?s[0]+r.base:s[0],l=a[u]||0,d="".concat(u," ").concat(l);a[u]=l+1;var p=t(d),f={css:s[1],media:s[2],sourceMap:s[3],supports:s[4],layer:s[5]};if(-1!==p)n[p].references++,n[p].updater(f);else{var v=o(f,r);r.byIndex=c,n.splice(c,0,{identifier:d,updater:v,references:1})}i.push(d)}return i}function o(e,n){var t=n.domAPI(n);return t.update(e),function(n){if(n){if(n.css===e.css&&n.media===e.media&&n.sourceMap===e.sourceMap&&n.supports===e.supports&&n.layer===e.layer)return;t.update(e=n)}else t.remove()}}e.exports=function(e,o){var a=r(e=e||[],o=o||{});return function(e){e=e||[];for(var i=0;i<a.length;i++){var c=t(a[i]);n[c].references--}for(var s=r(e,o),u=0;u<a.length;u++){var l=t(a[u]);0===n[l].references&&(n[l].updater(),n.splice(l,1))}a=s}}},569:e=>{var n={};e.exports=function(e,t){var r=function(e){if(void 0===n[e]){var t=document.querySelector(e);if(window.HTMLIFrameElement&&t instanceof window.HTMLIFrameElement)try{t=t.contentDocument.head}catch(e){t=null}n[e]=t}return n[e]}(e);if(!r)throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");r.appendChild(t)}},216:e=>{e.exports=function(e){var n=document.createElement("style");return e.setAttributes(n,e.attributes),e.insert(n,e.options),n}},565:(e,n,t)=>{e.exports=function(e){var n=t.nc;n&&e.setAttribute("nonce",n)}},795:e=>{e.exports=function(e){if("undefined"==typeof document)return{update:function(){},remove:function(){}};var n=e.insertStyleElement(e);return{update:function(t){!function(e,n,t){var r="";t.supports&&(r+="@supports (".concat(t.supports,") {")),t.media&&(r+="@media ".concat(t.media," {"));var o=void 0!==t.layer;o&&(r+="@layer".concat(t.layer.length>0?" ".concat(t.layer):""," {")),r+=t.css,o&&(r+="}"),t.media&&(r+="}"),t.supports&&(r+="}");var a=t.sourceMap;a&&"undefined"!=typeof btoa&&(r+="\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(a))))," */")),n.styleTagTransform(r,e,n.options)}(n,e,t)},remove:function(){!function(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e)}(n)}}}},589:e=>{e.exports=function(e,n){if(n.styleSheet)n.styleSheet.cssText=e;else{for(;n.firstChild;)n.removeChild(n.firstChild);n.appendChild(document.createTextNode(e))}}},890:(e,n,t)=>{e.exports=t.p+"5dade4e35b840cdd4340.svg"}},m={};function h(e){var n=m[e];if(void 0!==n)return n.exports;var t=m[e]={id:e,exports:{}};return v[e](t,t.exports,h),t.exports}h.m=v,h.n=e=>{var n=e&&e.__esModule?()=>e.default:()=>e;return h.d(n,{a:n}),n},h.d=(e,n)=>{for(var t in n)h.o(n,t)&&!h.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:n[t]})},h.g=function(){if("object"==typeof globalThis)return globalThis;try{return this||new Function("return this")()}catch(e){if("object"==typeof window)return window}}(),h.o=(e,n)=>Object.prototype.hasOwnProperty.call(e,n),(()=>{var e;h.g.importScripts&&(e=h.g.location+"");var n=h.g.document;if(!e&&n&&(n.currentScript&&(e=n.currentScript.src),!e)){var t=n.getElementsByTagName("script");if(t.length)for(var r=t.length-1;r>-1&&!e;)e=t[r--].src}if(!e)throw new Error("Automatic publicPath is not supported in this browser");e=e.replace(/#.*$/,"").replace(/\?.*$/,"").replace(/\/[^\/]+$/,"/"),h.p=e})(),h.b=document.baseURI||self.location.href,h.nc=void 0,e=h(379),n=h.n(e),t=h(795),r=h.n(t),o=h(569),a=h.n(o),i=h(565),c=h.n(i),s=h(216),u=h.n(s),l=h(589),d=h.n(l),p=h(426),(f={}).styleTagTransform=d(),f.setAttributes=c(),f.insert=a().bind(null,"head"),f.domAPI=r(),f.insertStyleElement=u(),n()(p.Z,f),p.Z&&p.Z.locals&&p.Z.locals,document.getElementById("div-logo").classList.add("logo")})();
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_Logic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/Logic */ \"./src/modules/Logic.js\");\n\n\n_modules_Logic__WEBPACK_IMPORTED_MODULE_0__.instantiateDefaultProjects()\nconsole.log(_modules_Logic__WEBPACK_IMPORTED_MODULE_0__.projects)\n\n//# sourceURL=webpack://todo-list/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Logic.js":
+/*!******************************!*\
+  !*** ./src/modules/Logic.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   addTodoToProject: () => (/* binding */ addTodoToProject),\n/* harmony export */   getActiveProject: () => (/* binding */ getActiveProject),\n/* harmony export */   instantiateDefaultProjects: () => (/* binding */ instantiateDefaultProjects),\n/* harmony export */   parseTodoForm: () => (/* binding */ parseTodoForm),\n/* harmony export */   projects: () => (/* binding */ projects)\n/* harmony export */ });\n/* harmony import */ var _Todo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Todo */ \"./src/modules/Todo.js\");\n/* harmony import */ var _Project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Project */ \"./src/modules/Project.js\");\n\n\n\n//\n\nconst projects = []\n\nfunction instantiateDefaultProjects (){\n    const inbox = new _Project__WEBPACK_IMPORTED_MODULE_1__[\"default\"]('Inbox', [])\n    const today = new _Project__WEBPACK_IMPORTED_MODULE_1__[\"default\"]('Today', [])\n    const upcoming = new _Project__WEBPACK_IMPORTED_MODULE_1__[\"default\"]('Upcoming', [])\n    const anytime = new _Project__WEBPACK_IMPORTED_MODULE_1__[\"default\"]('Anytime', [])\n\n    projects.push(inbox, today, upcoming, anytime)\n    return projects\n}\n\n\n// Parse todo form -> Returns Todo Task Object\n\nfunction parseTodoForm(){\n    const title = document.getElementById('todo-form-title').value\n    const description = document.getElementById('todo-form-description').value\n    const complete = document.getElementById('todo-form-complete').value\n    const dueDate = document.getElementById('todo-form-dueDate').value\n    const priority = document.getElementById('todo-form-priority').value\n\n    const todoTaskObject = new _Todo__WEBPACK_IMPORTED_MODULE_0__[\"default\"](title, description, complete, dueDate,priority)\n    return todoTaskObject \n}\n\n// Push Todo to Project -> Returns Updated Project\nfunction addTodoToProject(todo, project){\n    project.pushTodoToProject(todo)\n    return project\n}\n\n// Activate Project -> Returns Active Project\nfunction getActiveProject (name){\n    return projects.find(name)\n}\n\n\n\n// TODO: Temporary storage, research how this works with JSON\n// Store Info\n\n//# sourceURL=webpack://todo-list/./src/modules/Logic.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Project.js":
+/*!********************************!*\
+  !*** ./src/modules/Project.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project {\n   \n    constructor(name){\n    this.name = name\n    this.projectTodos = []\n\n   } \n\n   set name(value){\n    if (value){\n        this.name = value\n    }\n   }\n\n   get name(){\n    return this.name\n   }\n\n   get projectTodos(){\n    return this.projectTodos\n   }\n\n   pushTodoToProject(todo){\n    if (todo){\n        this.projectTodos.push(todo)\n    }\n   }\n}   \n\n\n//# sourceURL=webpack://todo-list/./src/modules/Project.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Todo.js":
+/*!*****************************!*\
+  !*** ./src/modules/Todo.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Todo)\n/* harmony export */ });\nclass Todo{\n\n    // This creates the initial object of the todo\n    constructor(status, title, description, notes, dueDate, priority){\n        this.status= status\n        this.description=description\n        this.title=title\n        this.notes =notes\n        this.dueDate = dueDate\n        this.priority=priority\n    }\n\n    // Getters & Setters of Todo\n    set title(title){\n        this.title = title\n    }\n\n    get title(){\n        return this.title\n    }\n\n\n    set description(description){\n        this.description = description\n    }\n\n    get description(){\n        return this.description\n    }\n\n    set notes(notes){\n        this.notes = notes\n    }\n\n    get notes (){\n        return this.notes\n    }\n    \n    set status(status){\n        if (status === true){\n            this.status = true\n        }\n        else {\n            this.status = false\n        }\n    }\n\n    set dueDate(dueDate){\n        this.dueDate = dueDate\n    }\n\n   get dueDate(){\n    return this.dueDate\n   }\n \n    set priority(priority){\n        this.priority = priority\n    }\n\n    get priority(){\n        return this.priority\n    }\n\n    get dateFormatted(){\n        if (!this.date){\n            return 'YY/MM/DD'\n        }\n\n        const dateObject = new Date(this.dueDate)\n        const formattedDate = dateObject.toLocaleDateString();\n        return formattedDate\n    }\n\n\n\n\n}\n\n//# sourceURL=webpack://todo-list/./src/modules/Todo.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+/******/ 	
+/******/ })()
+;
