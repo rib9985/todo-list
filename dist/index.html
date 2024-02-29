@@ -13,25 +13,33 @@
     <div id="container">
          <div id="div-header">
             <div id="header-logo">
-                
+
             </div>
             <div id="header-title">
-                BetterDoings 
+                BetterDoings
             </div>
             <div id="header-greet">
-                Hello, 
+                Hello,
             <div id="header-greet-name"> Bob Petterson</div>
             </div>
-        </div>           
-   
-            <div id="div-sidebar-projects">
-                <div id="sidebar-inbox" class="projects">Inbox</div>
-                <div id="sidebar-today" class="projects">Today</div>
-                <div id="sidebar-upcoming" class="projects">Upcoming</div>
-                <div id="sidebar-upcoming" class="projects">Anytime</div>
-                <div id="sidebar-projects" class="projects">Projects</div>
+        </div>
+
+            <div id="div-sidebar-container">
+                <div id="div-sidebar-projects">
+                    <div id="sidebar-inbox" class="projects">Inbox</div>
+                    <div id="sidebar-today" class="projects">Today</div>
+                    <div id="sidebar-upcoming" class="projects">Upcoming</div>
+                    <div id="sidebar-upcoming" class="projects">Anytime</div>
+                </div>
+            <div class="" id="div-add-project">
+              <form id=form-submit-new-project>
+                <input type="text"  id="project-name" placeholder="Add Project" maxlength="15" required>
+                <button type="submit" class="material-symbols-outlined" id="submit-project-button">done</button>
+              </form>
+
             </div>
-        
+            </div>
+
     <div id="div-main-content">
         <div id="div-current-project">Inbox</div>
             <form id=form-submit-todo action="post">
@@ -39,7 +47,7 @@
                     <input type="text" id="form-todo-description" placeholder="Description" required>
                     <input type="text" id="form-todo-notes" placeholder="Notes" required>
                    <input type="date" id="form-todo-date" value="2024-01-02" min="2024-01-01" required>
-                    
+
 
                     <label for="form-todo-priority">Priority</label>
         			<select name="form-todo-priority" id="form-todo-priority" required>
@@ -51,21 +59,11 @@
                     add_box</button>
         </form>
     <div id="div-divider"></div>
-     <div id="todo-list">           
-    <div class="todo"> 
-            <div id="div-todo-component">
-                <input type="checkbox" id="todo-checkbox">
-                <label for="todo-checkbox" id="todo-checkbox-label">
-                <div id="div-todo-title"></div>
-                <div id="div-todo-notes"></div>
-        </label>
-                <div id="div-todo-priority-icon" class="material-symbols-outlined div-todo-priority">priority_high</div>
-                <button id="div-todo-edit-icon" class="material-symbols-outlined">edit</button>
-            </div>
-    </div>
+     <div id="todo-list">
+       </div>
      </div>
         </div>
-    
+
 
     </div>
 </body>

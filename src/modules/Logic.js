@@ -19,9 +19,13 @@ function instantiateDefaultProjects() {
 function parseStoredProjects(parsedArray) {
 	const projectsArray = parsedArray.map((project) => {
 		const projectObject = Object.assign(new Project(), project);
-		projectObject.projectTodos.map((todo) => {
+		const newTodos = projectObject.projectTodos.map((todo) => {
 			const todoObject = Object.assign(new Todo(), todo);
 			return todoObject;
+		});
+		projectObject.projectTodos.length = 0;
+		newTodos.forEach((element) => {
+			projectObject.projectTodos.push(element);
 		});
 		return projectObject;
 	});
@@ -36,6 +40,16 @@ function checkForStorage() {
 	projectsStorage
 		? parseStoredProjects(projectsStorage)
 		: instantiateDefaultProjects();
+}
+
+function checkForProject(name) {
+	const projectNamesArray = [];
+
+	projects.forEach((element) => {
+		projectNamesArray.push(element.name);
+	});
+
+	return projectNamesArray.includes(name);
 }
 
 function parseTodoForm() {
@@ -110,6 +124,14 @@ function changeTodoStatus(project, id) {
 	return false;
 }
 
+function createNewProject(name) {
+	const newProject = new Project();
+	newProject.name = name;
+	projects.push(newProject);
+	Storage.setProjects(projects);
+	return newProject;
+}
+
 export {
 	parseTodoForm,
 	addTodoToProject,
@@ -119,4 +141,6 @@ export {
 	changeTodoStatus,
 	projects,
 	checkForStorage,
+	checkForProject,
+	createNewProject,
 };

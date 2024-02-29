@@ -1,19 +1,44 @@
 import * as logic from './Logic';
 
 export default class UI {
-	static idsDom() {}
+	static reloadProjects() {
+		UI.clearProjects();
+		const projectsSidebar = document.getElementById('div-sidebar-projects');
+		logic.projects.forEach((project) => {
+			const newProjectComponent = UI.createProjectComponent(
+				project.name,
+				project.id,
+			);
+			projectsSidebar.insertAdjacentHTML('beforeend', newProjectComponent);
+			const newProjectElement = document.getElementById(
+				`sidebar-${project.name}`,
+			);
+			newProjectElement.addEventListener('click', () => {
+				UI.changeProject(newProjectElement);
+			});
+		});
+	}
+
+	static clearProjects() {
+		const projectsSidebar = document.getElementById('div-sidebar-projects');
+		projectsSidebar.innerHTML = '';
+	}
 
 	static addEventListeners() {
 		const formSubmitTodo = document.getElementById('form-submit-todo');
-		const sidebarProjects = document.querySelectorAll('.projects');
+		const submitProjectButton = document.getElementById(
+			'submit-project-button',
+		);
 
 		formSubmitTodo.addEventListener('submit', (event) => {
 			UI.handleTodoForm(event);
 		});
-		sidebarProjects.forEach((project) => {
-			project.addEventListener('click', () => {
-				UI.changeProject(project);
-			});
+
+		submitProjectButton.addEventListener('click', (Event) => {
+			Event.preventDefault();
+			const name = document.getElementById('project-name').value;
+			UI.checkIfProjectExists(name);
+			console.log('Submitted new Project');
 		});
 	}
 
@@ -71,6 +96,37 @@ export default class UI {
 		UI.attachListenersToCheckboxes();
 		UI.attachListenersToEditButtons();
 		UI.attachListenersToPriorityButtons();
+	}
+
+	static createProjectComponent(name, id) {
+		const newProjectComponent = `
+<div id="sidebar-${name}" class="projects ${id}">${name}</div>
+`;
+		return newProjectComponent;
+	}
+
+	static createNewProject(name) {
+		const sidebarDiv = document.getElementById('div-sidebar-projects');
+
+		const projectObjectId = logic.createNewProject(name).id;
+		const newProjectComponent = UI.createProjectComponent(
+			name,
+			projectObjectId,
+		);
+
+		sidebarDiv.insertAdjacentHTML('beforeend', newProjectComponent);
+
+		const newProjectElement = document.getElementById(`sidebar-${name}`);
+		newProjectElement.addEventListener('click', () => {
+			UI.changeProject(newProjectElement);
+		});
+	}
+
+	static checkIfProjectExists(name) {
+		const doesExist = logic.checkForProject(name);
+		doesExist
+			? alert(`Project ${name} already exists!`)
+			: UI.createNewProject(name);
 	}
 
 	static createTodoComponent(title, description, notes, dueDate, priority, id) {
