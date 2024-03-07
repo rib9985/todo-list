@@ -76,6 +76,12 @@ gap: 0.5rem;
 
 }
 
+.projects:hover{
+  font-weight: 900;
+  color: lightblue;
+  cursor: pointer;
+}
+
 #div-sidebar-projects {
     text-justify: center;
     justify-content: center;
@@ -122,7 +128,7 @@ gap: 0.5rem;
     padding: 5px;
     width: 5rem;
     height: max-content;
-   grid-area: project; 
+   grid-area: project;
     border-style: solid;
     border-radius: 10px;
 }
@@ -162,16 +168,25 @@ gap: 0.5rem;
 }
 
 
+#form-todo-priority{
+  color: black;
+  cursor: pointer;
+  font-size: 12px;
+  border-style: solid;
+  min-width: fit-content;
+}
+
 #form-submit-todo{
     display: flex;
     size: 2rem;
     gap: 1rem;
     justify-content: flex-start;
     align-items: center;
+  cursor: pointer;
 }
 
-input:not(#form-todo-date, #project-name),
-select {
+input:not(#form-todo-date, #project-name, #form-todo-priority, select)
+{
 
 	border-style: none;
     width: fit-content;
@@ -188,7 +203,7 @@ color: black;
 }
 
 #form-todo-date{
-width: fit-content;
+min-width: fit-content;
 }
 
 label{
@@ -199,6 +214,7 @@ label{
     border-style: none;
     color: green;
     background-color: transparent;
+  cursor: pointer;
 }
 
 #div-divider{
@@ -235,6 +251,8 @@ height: 2px;
     color: white;
     padding: 0.5%;
     border-radius: 10px;
+
+  cursor: pointer;
 }
 
 .button-todo-priority-high{
@@ -242,16 +260,19 @@ height: 2px;
 }
 
 .button-todo-priority-medium{
-background-color: orange
+background-color: orange;
+  cursor: pointer;
 }
 
 .button-todo-priority-low{
+  cursor: pointer;
     background-color: greenyellow;
 }
 
 .edit-button-todo{
 border-style: none;
 background-color: transparent;
+  cursor: pointer;
 }
 
 
@@ -267,4 +288,7 @@ background-color: transparent;
 .todo-checkbox:checked+  label#todo-checkbox-label {
     text-decoration: line-through;
     color: lightslategrey;
+
 }
+
+

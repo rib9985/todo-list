@@ -45,15 +45,21 @@ export default class UI {
 	static changeProject(element) {
 		const activeProject = document.getElementById('div-current-project');
 		activeProject.innerHTML = element.innerText;
+		const newActiveProject = activeProject.innerText;
+		this.reloadTodos(newActiveProject);
+	}
+
+	static reloadTodos(project) {
 		UI.clearTodoList();
-		UI.updateTodoList(activeProject.innerHTML);
+		UI.updateTodoList(project);
 	}
 
 	static getActiveProject() {
 		const activeProject = document.getElementById(
 			'div-current-project',
-		).innerHTML;
+		).innerText;
 		console.log(`Current Active Project is ${activeProject}`);
+
 		return activeProject;
 	}
 
@@ -183,8 +189,49 @@ export default class UI {
 	}
 
 	static handleEditButton(element) {
-		const todoId = this.extractIdFromHtmlId(element);
-		alert(`This Edit Button with Todo ${todoId} was alert`);
+		const todoId = UI.extractIdFromHtmlId(element);
+		const editPopup = this.divEditPopup(todoId);
+		const divMainContent = document.getElementById('div-main-content');
+		divMainContent.insertAdjacentHTML('beforebegin', editPopup);
+
+		const closeButton = document.getElementById('div-close-edit');
+		closeButton.addEventListener('click', () => {
+			this.closeEditPopup();
+		});
+
+		const submitEditButton = document.getElementById('edit-todo-button');
+		submitEditButton.addEventListener('click', () => {
+			alert('Edit submitted');
+			logic.editTodoInProject(this.getActiveProject(), todoId);
+			this.closeEditPopup();
+			this.reloadTodos(this.getActiveProject());
+		});
+	}
+
+	static closeEditPopup() {
+		const popupContainer = document.getElementById('popup-EditFormContainer');
+		popupContainer.remove();
+	}
+
+	static divEditPopup(todoId) {
+		const activeProject = UI.getActiveProject();
+		const todo = logic.findTodoById(activeProject, todoId);
+
+		const divEditPopup = `<div class="popup-EditContainer" id="popup-EditFormContainer">
+  <div class="div-popup-edit">
+    <div class="close" id="div-close-edit">&times;</div>
+    <form class="edit-todo" >
+                    <input type="text"  id="edit-todo-title" placeholder="${todo.title}" >
+                    <input type="text" id="edit-todo-description" placeholder="${todo.description}" >
+                    <input type="text" id="edit-todo-notes" placeholder="${todo.notes}">
+                    <input type="date" id="edit-todo-date" value="${todo.dueDate}" min="2024-01-01" >
+                <button type="submit" class="material-symbols-outlined" id="edit-todo-button">
+                    add_box</button>
+    </form>
+  </div>
+</div>
+`;
+		return divEditPopup;
 	}
 
 	static handleCheckboxCheck(element) {

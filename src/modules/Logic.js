@@ -132,6 +132,49 @@ function createNewProject(name) {
 	return newProject;
 }
 
+function findTodoById(project, todoId) {
+	const targetProject = getActiveProject(project);
+	const targetTodo = targetProject.findTodoById(todoId);
+
+	return targetTodo;
+}
+
+function parseEditForm() {
+	const title = document.getElementById('edit-todo-title').value;
+	const description = document.getElementById('edit-todo-description').value;
+	const notes = document.getElementById('edit-todo-notes').value;
+	const dueDate = document.getElementById('edit-todo-date').value;
+
+	const editFormInfo = { title, description, notes, dueDate };
+	return editFormInfo;
+}
+
+function checkIfPropertyExists(source, target) {
+	if (source === target || source === '') {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function editTodoInProject(project, todoId) {
+	const todoTarget = findTodoById(project, todoId);
+	const editForm = parseEditForm();
+
+	if (checkIfPropertyExists(editForm.title, todoTarget.title)) {
+		todoTarget.title = editForm.title;
+	}
+	if (checkIfPropertyExists(editForm.description, todoTarget.description)) {
+		todoTarget.description = editForm.description;
+	}
+	if (checkIfPropertyExists(editForm.notes, todoTarget.notes)) {
+		todoTarget.notes = editForm.notes;
+	}
+	if (checkIfPropertyExists(editForm.dueDate, todoTarget.dueDate)) {
+		todoTarget.dueDate = editForm.dueDate;
+	}
+}
+
 export {
 	parseTodoForm,
 	addTodoToProject,
@@ -143,4 +186,6 @@ export {
 	checkForStorage,
 	checkForProject,
 	createNewProject,
+	findTodoById,
+	editTodoInProject,
 };
