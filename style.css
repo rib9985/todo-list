@@ -210,11 +210,21 @@ label{
     font-size: small;
 }
 
-#submit-todo-button{
+#submit-todo-button, #edit-todo-button{
     border-style: none;
     color: green;
     background-color: transparent;
   cursor: pointer;
+}
+
+#div-close-edit{
+  cursor: pointer;
+  color: red;
+}
+
+
+#submit-todo-button:active, #edit-todo-button:active, .edit-button-todo:active, .priority-button-todo:active {
+  transform: scale(98%)
 }
 
 #div-divider{
@@ -223,14 +233,21 @@ height: 2px;
     background-color: gray;
 }
 
+#todo-list{
+  width: 75vw
+}
+
 #div-todo-component,#todo-checkbox-label{
     display: flex;
+  max-width: 100%;
     flex-direction: row;
     padding: 1%;
-    gap: 1vw;
-    align-items: center;
+    gap: 6vw;
+    align-items: space-evenly ;
+justify-content: space-between;
     justify-items: center;
 }
+
 
 #div-todo-title{
     width: 10rem;
@@ -256,6 +273,7 @@ height: 2px;
 }
 
 .button-todo-priority-high{
+  cursor: pointer;
     background-color: red;
 }
 
@@ -267,6 +285,16 @@ background-color: orange;
 .button-todo-priority-low{
   cursor: pointer;
     background-color: greenyellow;
+}
+
+
+.priority-button-todo{
+  width: 80%;
+  padding: 8px 8px;
+  border: none;
+  border-radius: 50px;
+  border-style: none;
+  font-size: 16px;
 }
 
 .edit-button-todo{
@@ -292,3 +320,42 @@ background-color: transparent;
 }
 
 
+#popup-EditFormContainer{
+  padding: 20px;
+  border-color: black;
+  width: 300px;
+  border: solid 5px;
+  margin: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 600px;
+  transform: translate(-50%,-50%);
+  z-index: 99;
+  background-color: whitesmoke;
+}
+
+#div-edit-todo-title{
+  transform: translate(30%,-120%);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.div-popup-edit{
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+}
+
+.edit-todo{
+  display: grid;
+  flex-direction: row;
+  align-content: space-evenly;
+  justify-content: center;
+  font-size: 3rem;}
+
+#div-current-project{
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: lightseagreen;
+}
