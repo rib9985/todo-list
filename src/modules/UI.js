@@ -163,12 +163,19 @@ export default class UI {
 			UI.handleEditButton(editButton);
 		});
 
+		let timeoutId = null;
 		const checkbox = document.getElementById(`todo-checkbox-${id}`);
 		checkbox.addEventListener('change', () => {
-			setTimeout(() => {
-				if (checkbox.checked) {
-					UI.handleCheckboxCheck(checkbox);
-				}
+			if (!checkbox.checked) {
+				clearTimeout(timeoutId);
+				timeoutId = null;
+				return;
+			}
+
+			clearTimeout(timeoutId);
+
+			timeoutId = setTimeout(() => {
+				UI.handleCheckboxCheck(checkbox);
 			}, 2000);
 		});
 	}
@@ -220,13 +227,14 @@ export default class UI {
 		const divEditPopup = `<div class="popup-EditContainer" id="popup-EditFormContainer">
   <div class="div-popup-edit">
     <div class="close" id="div-close-edit">&times;</div>
+    <div class="edit-title" id="div-edit-todo-title">Editing ${todo.title}</div>
     <form class="edit-todo" >
-                    <input type="text"  id="edit-todo-title" placeholder="${todo.title}" >
-                    <input type="text" id="edit-todo-description" placeholder="${todo.description}" >
-                    <input type="text" id="edit-todo-notes" placeholder="${todo.notes}">
+                    <input type="text"  id="edit-todo-title" placeholder="Title: ${todo.title}" >
+                    <input type="text" id="edit-todo-description" placeholder="Description: ${todo.description}" >
+                    <input type="text" id="edit-todo-notes" placeholder="Notes: ${todo.notes}">
                     <input type="date" id="edit-todo-date" value="${todo.dueDate}" min="2024-01-01" >
                 <button type="submit" class="material-symbols-outlined" id="edit-todo-button">
-                    add_box</button>
+                    published_with_changes</button>
     </form>
   </div>
 </div>
