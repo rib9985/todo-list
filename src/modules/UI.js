@@ -1,5 +1,5 @@
 import * as logic from './Logic';
-
+import { format } from 'date-fns';
 export default class UI {
 	static reloadProjects() {
 		UI.clearProjects();
@@ -75,6 +75,14 @@ export default class UI {
 				todo.id,
 			);
 		});
+	}
+
+	static setFormDatesToToday() {
+		const formDateElement = document.getElementById('form-todo-date');
+		const today = format(new Date(), 'yyyy-MM-dd');
+		console.log(`Today is ${today}`);
+		formDateElement.setAttribute('value', today);
+		formDateElement.setAttribute('min', today);
 	}
 
 	static clearTodoList() {
@@ -223,6 +231,7 @@ export default class UI {
 	static divEditPopup(todoId) {
 		const activeProject = UI.getActiveProject();
 		const todo = logic.findTodoById(activeProject, todoId);
+		const todayEdit = new Date();
 
 		const divEditPopup = `<div class="popup-EditContainer" id="popup-EditFormContainer">
   <div class="div-popup-edit">
@@ -232,7 +241,7 @@ export default class UI {
                     <input type="text"  id="edit-todo-title" placeholder="Title: ${todo.title}" >
                     <input type="text" id="edit-todo-description" placeholder="Description: ${todo.description}" >
                     <input type="text" id="edit-todo-notes" placeholder="Notes: ${todo.notes}">
-                    <input type="date" id="edit-todo-date" value="${todo.dueDate}" min="2024-01-01" >
+                    <input type="date" id="edit-todo-date" value="${todo.dueDate}" min= "${todayEdit}" >
                 <button type="submit" class="material-symbols-outlined" id="edit-todo-button">
                     published_with_changes</button>
     </form>

@@ -33,6 +33,15 @@ function parseStoredProjects(parsedArray) {
 	projectsArray.forEach((element) => {
 		projects.push(element);
 	});
+
+	const todayTodos = checkForDateToday();
+	const todayProject = getActiveProject('Today');
+
+	if (todayTodos) {
+		todayTodos.forEach((element) => {
+			todayProject.projectTodos.push(element);
+		});
+	}
 }
 
 function checkForStorage() {
@@ -40,6 +49,20 @@ function checkForStorage() {
 	projectsStorage
 		? parseStoredProjects(projectsStorage)
 		: instantiateDefaultProjects();
+}
+
+function checkForDateToday() {
+	const todayTodos = [];
+	projects.forEach((project) => {
+		const todayInProject = project.filterByTodayDate();
+		if (todayInProject) {
+			todayInProject.forEach((element) => {
+				todayTodos.push(element);
+			});
+		}
+	});
+	console.log(`Today's todos are: ${todayTodos}`);
+	return todayTodos;
 }
 
 function checkForProject(name) {
@@ -68,6 +91,8 @@ function parseTodoForm() {
 		dueDate,
 		priority,
 	);
+
+	todoTaskObject.setdateFormatted();
 	console.log(todoTaskObject);
 	return todoTaskObject;
 }
@@ -145,7 +170,7 @@ function parseEditForm() {
 	const notes = document.getElementById('edit-todo-notes').value;
 	const dueDate = document.getElementById('edit-todo-date').value;
 
-	const editFormInfo = { title, description, notes, dueDate };
+	const editFormInfo = new Todo(false, title, description, notes, dueDate);
 	return editFormInfo;
 }
 

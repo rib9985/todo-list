@@ -1,50 +1,43 @@
-import idGenerator from "./IdGenerator"
+import { format, parseISO } from 'date-fns';
+import idGenerator from './IdGenerator';
+export default class Todo {
+	// This creates the initial object of the todo
+	constructor(status, title, description, notes, dueDate, priority) {
+		this.status = status;
+		this.description = description;
+		this.title = title;
+		this.notes = notes;
+		this.dueDate = dueDate;
+		this.priority = priority;
+		this.id = idGenerator();
+	}
 
-export default class Todo{
+	changePriority() {
+		if (this.priority === 'low') {
+			this.priority = 'medium';
+		} else if (this.priority === 'medium') {
+			this.priority = 'high';
+		} else {
+			this.priority = 'low';
+		}
+	}
 
-    // This creates the initial object of the todo
-    constructor(status, title, description, notes, dueDate, priority){
-        this.status= status
-        this.description=description
-        this.title=title
-        this.notes =notes
-        this.dueDate = dueDate
-        this.priority=priority
-        this.id = idGenerator()
-    }
+	changeStatus() {
+		if (this.status === true) {
+			this.status = false;
+		} else if (this.status === false) {
+			this.status = true;
+		}
+	}
 
-    changePriority(){
-        if (this.priority === 'low'){
-            this.priority = 'medium'
-        }
-        else if (this.priority === 'medium'){
-            this.priority = 'high'
-        }
-        else{
-            this.priority = 'low'
-        }
-    }
+	setdateFormatted() {
+		if (!this.dueDate) {
+			return 'DD/MM/YY';
+		}
+		const dateParse = this.dueDate;
 
-    changeStatus(){
-        if (this.status === true){
-            this.status = false
-        }
-        else if (this.status===false){
-            this.status = true
-        }
-    }
-
-    dateFormatted(){
-        if (!this.date){
-            return 'YY/MM/DD'
-        }
-
-        const dateObject = new Date(this.dueDate)
-        const formattedDate = dateObject.toLocaleDateString();
-        return formattedDate
-    }
-
-
-
-
+		const dateObject = format(parseISO(dateParse), 'dd/MM/yyyy');
+		this.dueDate = dateObject;
+		return dateObject;
+	}
 }
