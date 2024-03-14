@@ -1,4 +1,4 @@
-import { isBefore, isToday, format } from 'date-fns';
+import { isBefore, isToday, format, isAfter, parse } from 'date-fns';
 import idGenerator from './IdGenerator';
 
 export default class Project {
@@ -16,7 +16,13 @@ export default class Project {
 
 	findTodoById(id) {
 		if (id) {
-			return this.projectTodos.find((todo) => todo.id === id);
+			const found = this.projectTodos.find((todo) => {
+				return todo.id === id;
+			});
+
+			if (found) {
+				return found;
+			}
 		}
 		return console.log(`No ${id} found within ${this.name}`);
 	}
@@ -34,10 +40,31 @@ export default class Project {
 		return filteredTodos;
 	}
 
+	filterByUpcoming() {
+		const today = new Date();
+
+		const filteredTodos = this.projectTodos.filter((todo) => {
+			const dueDate = parse(todo.dueDate, 'dd/MM/yyyy', new Date());
+			return isAfter(dueDate, today);
+		});
+		return filteredTodos;
+	}
+
+	filterByPastDue() {
+		const today = new Date();
+
+		const filteredTodos = this.projectTodos.filter((todo) => {
+			const dueDate = parse(todo.dueDate, 'dd/MM/yyyy', new Date());
+			return isAfter(dueDate, today);
+		});
+		return filteredTodos;
+	}
+
 	removeTodosDueToday() {
 		const filteredTodos = this.filterByTodayDate();
 		filteredTodos.forEach((todo) =>
 			this.projectTodos.splice(this.projectTodos.indexOf(todo, 1)),
 		);
+		return filteredTodos;
 	}
 }

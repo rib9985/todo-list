@@ -1,7 +1,6 @@
 import Todo from './Todo';
 import Project from './Project';
 import Storage from './LocalStorage';
-
 //
 
 const projects = [];
@@ -9,10 +8,9 @@ const projects = [];
 function instantiateDefaultProjects() {
 	const inbox = new Project('Inbox', []);
 	const today = new Project('Today', []);
+	const pastDue = new Project('Past Due', []);
 	const upcoming = new Project('Upcoming', []);
-	const anytime = new Project('Anytime', []);
-
-	projects.push(inbox, today, upcoming, anytime);
+	projects.push(inbox, today, pastDue, upcoming);
 	return projects;
 }
 
@@ -33,15 +31,6 @@ function parseStoredProjects(parsedArray) {
 	projectsArray.forEach((element) => {
 		projects.push(element);
 	});
-
-	const todayTodos = checkForDateToday();
-	const todayProject = getActiveProject('Today');
-
-	if (todayTodos) {
-		todayTodos.forEach((element) => {
-			todayProject.projectTodos.push(element);
-		});
-	}
 }
 
 function checkForStorage() {
@@ -51,18 +40,55 @@ function checkForStorage() {
 		: instantiateDefaultProjects();
 }
 
-function checkForDateToday() {
-	const todayTodos = [];
+function createNewProject(name) {
+	const newProject = new Project();
+	newProject.name = name;
+	projects.push(newProject);
+	Storage.setProjects(projects);
+	return newProject;
+}
+
+function findTodoIdProject(todoId) {
+	let projectFound = null;
 	projects.forEach((project) => {
-		const todayInProject = project.filterByTodayDate();
-		if (todayInProject) {
-			todayInProject.forEach((element) => {
-				todayTodos.push(element);
-			});
+		const findTodo = project.findTodoById(todoId);
+		if (findTodo) {
+			projectFound = project;
+			return;
 		}
 	});
-	console.log(`Today's todos are: ${todayTodos}`);
-	return todayTodos;
+
+	return projectFound;
+}
+
+function findTodoById(todoId) {
+	let todoFound = null;
+	projects.forEach((project) => {
+		const findTodo = project.findTodoById(todoId);
+		if (findTodo) {
+			todoFound = findTodo;
+			return;
+		}
+	});
+
+	return todoFound;
+}
+
+function populateDates(date) {
+	const renderTodos = [];
+	projects.forEach((project) => {
+		if (date === 'Today') {
+			renderTodos.push(...project.filterByTodayDate());
+		}
+		if (date === 'Past Due') {
+			renderTodos.push(...project.filterByPastDue());
+		}
+		if (date === 'Upcoming') {
+			renderTodos.push(...project.filterByUpcoming());
+		}
+	});
+	return renderTodos;
+	console.log(projects);
 }
 
 function checkForProject(name) {
@@ -97,12 +123,22 @@ function parseTodoForm() {
 	return todoTaskObject;
 }
 
+function checkForDateString(string) {
+	if (string === 'Today' || string === 'Past Due' || string === 'Upcoming') {
+		return true;
+	}
+	return false;
+}
+
 function getActiveProject(project) {
+	if (checkForDateString(project)) {
+		const result = projects.find(({ name }) => name === 'Inbox');
+		return result;
+	}
+
 	const result = projects.find(({ name }) => name === project);
 	return result;
 }
-
-console.log(getActiveProject('Inbox'));
 
 function addTodoToProject(todo, currentProject) {
 	const targetProject = getActiveProject(currentProject);
@@ -116,23 +152,18 @@ function addTodoToProject(todo, currentProject) {
 }
 
 function togglePriorityStatus(project, id) {
-	const targetProject = getActiveProject(project);
-	const targetTodo = targetProject.findTodoById(id);
+	const targetTodo = findTodoById(id);
 
 	targetTodo.changePriority();
 
 	const newPriorityStatus = targetTodo.priority;
-	console.log(
-		`${projects} with the TODO id ${id} has a new priority: ${newPriorityStatus}`,
-	);
+	console.log();
 	Storage.setProjects(projects);
 	return newPriorityStatus;
 }
 
-function changeTodoStatus(project, id) {
-	const targetProject = getActiveProject(project);
-	const targetTodo = targetProject.findTodoById(id);
-
+function changeTodoStatus(projectPassed, id) {
+	const targetTodo = findTodoById(id);
 	targetTodo.changeStatus();
 	const isStatusComplete = targetTodo.status;
 
@@ -141,27 +172,13 @@ function changeTodoStatus(project, id) {
 	);
 
 	if (isStatusComplete === true) {
-		targetProject.filterCompletedTodos();
+		const project = findTodoIdProject(id);
+		project.filterCompletedTodos();
 		Storage.setProjects(projects);
 		return true;
 	}
 
 	return false;
-}
-
-function createNewProject(name) {
-	const newProject = new Project();
-	newProject.name = name;
-	projects.push(newProject);
-	Storage.setProjects(projects);
-	return newProject;
-}
-
-function findTodoById(project, todoId) {
-	const targetProject = getActiveProject(project);
-	const targetTodo = targetProject.findTodoById(todoId);
-
-	return targetTodo;
 }
 
 function parseEditForm() {
@@ -171,6 +188,7 @@ function parseEditForm() {
 	const dueDate = document.getElementById('edit-todo-date').value;
 
 	const editFormInfo = new Todo(false, title, description, notes, dueDate);
+	editFormInfo.setdateFormatted();
 	return editFormInfo;
 }
 
@@ -183,7 +201,7 @@ function checkIfPropertyExists(source, target) {
 }
 
 function editTodoInProject(project, todoId) {
-	const todoTarget = findTodoById(project, todoId);
+	const todoTarget = findTodoById(todoId);
 	const editForm = parseEditForm();
 
 	if (checkIfPropertyExists(editForm.title, todoTarget.title)) {
@@ -212,5 +230,6 @@ export {
 	checkForProject,
 	createNewProject,
 	findTodoById,
+	populateDates,
 	editTodoInProject,
 };

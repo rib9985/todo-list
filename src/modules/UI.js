@@ -63,9 +63,26 @@ export default class UI {
 		return activeProject;
 	}
 
+	static checkIfProjectIsDate(project) {
+		if (
+			project === 'Today' ||
+			project === 'Upcoming' ||
+			project === 'Past Due'
+		) {
+			return true;
+		}
+		return false;
+	}
+
 	static updateTodoList(project) {
-		const currentProject = logic.getActiveProject(project);
-		currentProject.projectTodos.forEach((todo) => {
+		let todosToRender = null;
+		if (UI.checkIfProjectIsDate(project)) {
+			todosToRender = logic.populateDates(project);
+		} else {
+			const currentProject = logic.getActiveProject(project);
+			todosToRender = currentProject.projectTodos;
+		}
+		todosToRender.forEach((todo) => {
 			UI.createTodoComponent(
 				todo.title,
 				todo.description,
@@ -80,7 +97,6 @@ export default class UI {
 	static setFormDatesToToday() {
 		const formDateElement = document.getElementById('form-todo-date');
 		const today = format(new Date(), 'yyyy-MM-dd');
-		console.log(`Today is ${today}`);
 		formDateElement.setAttribute('value', today);
 		formDateElement.setAttribute('min', today);
 	}
@@ -96,14 +112,7 @@ export default class UI {
 		const todo = logic.parseTodoForm();
 
 		logic.addTodoToProject(todo, currentProject);
-		UI.createTodoComponent(
-			todo.title,
-			todo.notes,
-			todo.description,
-			todo.dueDate,
-			todo.priority,
-			todo.id,
-		);
+		UI.reloadTodos(currentProject);
 	}
 
 	static attachAllListeners() {
@@ -230,7 +239,7 @@ export default class UI {
 
 	static divEditPopup(todoId) {
 		const activeProject = UI.getActiveProject();
-		const todo = logic.findTodoById(activeProject, todoId);
+		const todo = logic.findTodoById(todoId);
 		const todayEdit = new Date();
 
 		const divEditPopup = `<div class="popup-EditContainer" id="popup-EditFormContainer">
