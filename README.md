@@ -1,2 +1,4 @@
-# todo-list
-A To-Do list projected, inspired by Things 3. Created for The Odin Project.
+# Todo List
+A To-Do list by Things 3. Created for The Odin Project.
+
+- Preview here: ()[]
