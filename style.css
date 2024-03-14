@@ -41,7 +41,7 @@ body {
 #header-logo {
     width: 40px;
     height: 40px;
-    background-image: url('../src/assets/todo-logo.svg');
+    background-image: url('./todo-logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
 }
